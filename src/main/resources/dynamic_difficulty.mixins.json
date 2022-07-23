@@ -1,12 +1,12 @@
 {
 	"required": true,
 	"minVersion": "0.8",
-	"package": "com.example.example_mod.mixin",
+	"package": "net.eman3600.dynamic_difficulty.mixin",
 	"compatibilityLevel": "JAVA_17",
-	"mixins": [],
-	"client": [
-		"TitleScreenMixin"
-	],
+	"mixins": [
+      "PlayerMixin"
+    ],
+	"client": [],
 	"injectors": {
 		"defaultRequire": 1
 	}

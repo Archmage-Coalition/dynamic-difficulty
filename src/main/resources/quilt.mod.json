@@ -1,25 +1,25 @@
 {
 	"schema_version": 1,
 	"quilt_loader": {
-		"group": "com.example",
-		"id": "example_mod",
+		"group": "net.eman3600",
+		"id": "dynamic_difficulty",
 		"version": "${version}",
 		"metadata": {
-			"name": "Mod Name",
+			"name": "Eman's Dynamic Difficulty",
 			"description": "A short description of your mod.",
 			"contributors": {
-				"Me!": "Owner"
+				"Eman3600": "Owner"
 			},
 			"contact": {
-				"homepage": "https://example.com/",
-				"issues": "https://github.com/QuiltMC/quilt-template-mod/issues",
-				"sources": "https://github.com/QuiltMC/quilt-template-mod"
+				"issues": "https://github.com/Eman-3600/dynamic-difficulty/issues",
+				"sources": "https://github.com/Eman-3600/dynamic-difficulty"
 			},
-			"icon": "assets/example_mod/icon.png"
+			"icon": "assets/dynamic_difficulty/icon.png"
 		},
 		"intermediate_mappings": "net.fabricmc:intermediary",
 		"entrypoints": {
-			"init": "com.example.example_mod.ExampleMod"
+			"init": "net.eman3600.dynamic_difficulty.DynamicDifficulty",
+			"cardinal-components": "net.eman3600.dynamic_difficulty.init.DifficultyComponents"
 		},
 		"depends": [
 			{
@@ -33,8 +33,18 @@
 			{
 				"id": "minecraft",
 				"versions": ">=1.19"
+			},
+			{
+				"id": "cardinal-components-base",
+				"versions": ">=5.0.1"
 			}
 		]
 	},
-	"mixin": "example_mod.mixins.json"
+	"mixin": "dynamic_difficulty.mixins.json",
+	"custom": {
+		"cardinal-components": [
+			"dynamic_difficulty:player_difficulty",
+			"dynamic_difficulty:world_difficulty"
+		]
+	}
 }
