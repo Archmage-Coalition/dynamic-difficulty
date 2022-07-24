@@ -41,10 +41,8 @@
 		]
 	},
 	"mixin": "dynamic_difficulty.mixins.json",
-	"custom": {
-		"cardinal-components": [
+	"cardinal-components": [
 			"dynamic_difficulty:player_difficulty",
 			"dynamic_difficulty:world_difficulty"
 		]
-	}
 }
