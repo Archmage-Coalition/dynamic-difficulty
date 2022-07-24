@@ -24,15 +24,22 @@ public class WorldDifficulty implements ServerTickingComponent, AutoSyncedCompon
 
 	public float getDifficulty() {
 		List<ServerPlayerEntity> players = server.getPlayerManager().getPlayerList();
-		float combined_difficulty = 0;
 
-		for (ServerPlayerEntity player: players) {
-			combined_difficulty += DifficultyComponents.PLAYER_DIFFICULTY.get(player).getDifficulty();
+		if (players.size() > 1) {
+			float combined_difficulty = 0;
+
+			for (ServerPlayerEntity player: players) {
+				combined_difficulty += DifficultyComponents.PLAYER_DIFFICULTY.get(player).getDifficulty();
+			}
+
+			float difficulty = combined_difficulty/players.size();
+			return difficulty - (float)(difficulty % .01);
+		} else if (players.size() == 1) {
+			return DifficultyComponents.PLAYER_DIFFICULTY.get(players.get(0)).getDifficulty();
+		} else {
+			return PlayerDifficulty.MAX_DIFFICULTY/2;
 		}
 
-		float difficulty = combined_difficulty/players.size();
-
-		return difficulty - (float)(difficulty % .01);
 	}
 
 	public Difficulty getIntendedDifficulty() {
@@ -46,13 +53,13 @@ public class WorldDifficulty implements ServerTickingComponent, AutoSyncedCompon
 	public void serverTick() {
 		if (server.getSaveProperties().getDifficulty() != getIntendedDifficulty()) {
 			server.setDifficulty(getIntendedDifficulty(), true);
+			server.setDifficultyLocked(true);
 		}
 	}
 
 	@Override
 	public void readFromNbt(NbtCompound tag) {
 		server.setDifficulty(Difficulty.NORMAL, true);
-		server.setDifficultyLocked(true);
 	}
 
 	@Override

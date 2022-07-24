@@ -10,7 +10,7 @@ import net.minecraft.util.registry.Registry;
 import org.quiltmc.qsl.item.setting.api.QuiltItemSettings;
 
 public class DifficultyItems {
-	private static final Item METER = registerItem("meter", new DifficultyMeterItem(new QuiltItemSettings().group(ItemGroup.TOOLS)));
+	private static final Item METER = registerItem("meter", new DifficultyMeterItem(new QuiltItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
 
 	private static final Item EASY_SKEW_ITEM = registerItem("easy_skew", new DifficultySkewItem(new QuiltItemSettings().group(ItemGroup.TOOLS), -30));
 	private static final Item HARD_SKEW_ITEM = registerItem("hard_skew", new DifficultySkewItem(new QuiltItemSettings().group(ItemGroup.TOOLS), 30));

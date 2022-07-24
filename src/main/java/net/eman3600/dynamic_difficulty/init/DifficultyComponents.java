@@ -4,6 +4,7 @@ import dev.onyxstudios.cca.api.v3.component.ComponentKey;
 import dev.onyxstudios.cca.api.v3.component.ComponentRegistry;
 import dev.onyxstudios.cca.api.v3.entity.EntityComponentFactoryRegistry;
 import dev.onyxstudios.cca.api.v3.entity.EntityComponentInitializer;
+import dev.onyxstudios.cca.api.v3.entity.PlayerCopyCallback;
 import dev.onyxstudios.cca.api.v3.entity.RespawnCopyStrategy;
 import dev.onyxstudios.cca.api.v3.scoreboard.ScoreboardComponentFactoryRegistry;
 import dev.onyxstudios.cca.api.v3.scoreboard.ScoreboardComponentInitializer;
@@ -20,6 +21,13 @@ public class DifficultyComponents implements EntityComponentInitializer, Scorebo
 	@Override
 	public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {
 		registry.registerForPlayers(PLAYER_DIFFICULTY, PlayerDifficulty::new, RespawnCopyStrategy.ALWAYS_COPY);
+
+		PlayerCopyCallback.EVENT.register(((original, clone, lossless) -> {
+			if (!lossless) {
+				original.getComponent(PLAYER_DIFFICULTY).add(-15);
+				clone.getComponent(PLAYER_DIFFICULTY).add(-15);
+			}
+		}));
 	}
 
 	@Override

@@ -10,7 +10,8 @@ import net.minecraft.util.math.MathHelper;
 import javax.annotation.Nonnegative;
 
 public class PlayerDifficulty implements ServerTickingComponent, AutoSyncedComponent {
-	private final int MAX_DIFFICULTY = 100;
+	public static final int MAX_DIFFICULTY = 100;
+	private static final int UPTICK_TIME = 24000;
 	private int difficulty = 50;
 	private int uptick = 0;
 
@@ -39,8 +40,8 @@ public class PlayerDifficulty implements ServerTickingComponent, AutoSyncedCompo
 	@Override
 	public void serverTick() {
 		uptick++;
-		if (uptick >= 24000) {
-			uptick -= 24000;
+		if (uptick >= UPTICK_TIME) {
+			uptick -= UPTICK_TIME;
 			difficulty++;
 		}
 	}
