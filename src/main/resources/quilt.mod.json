@@ -6,7 +6,7 @@
 		"version": "${version}",
 		"metadata": {
 			"name": "Eman's Dynamic Difficulty",
-			"description": "A short description of your mod.",
+			"description": "Dynamically adjusts server difficulty",
 			"contributors": {
 				"Eman3600": "Owner"
 			},
